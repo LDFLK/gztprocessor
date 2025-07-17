@@ -1,0 +1,118 @@
+{
+    "transactions": {
+        "moves": [
+            {
+                "type": "MOVE",
+                "department": "Department of Inland Revenue",
+                "from_ministry": "Minister of Finance",
+                "to_ministry": "Minister of Energy",
+                "position": 8
+            },
+            {
+                "type": "MOVE",
+                "department": "Occupational Safety and Health",
+                "from_ministry": "Minister of Labour",
+                "to_ministry": "Minister of Environment",
+                "position": 3
+            },
+            {
+                "type": "MOVE",
+                "department": "Trade Union Relations Board",
+                "from_ministry": "Minister of Labour",
+                "to_ministry": "Minister of Environment",
+                "position": 2
+            },
+            {
+                "type": "MOVE",
+                "department": "Mahaweli Authority",
+                "from_ministry": "Minister of Agriculture",
+                "to_ministry": "Minister of Environment",
+                "position": 4
+            }
+        ],
+        "adds": [
+            {
+                "type": "ADD",
+                "department": "National Security Advisory Unit",
+                "to_ministry": "Minister of Defence",
+                "position": 3
+            },
+            {
+                "type": "ADD",
+                "department": "Cyber Defence Centre",
+                "to_ministry": "Minister of Defence",
+                "position": 4
+            },
+            {
+                "type": "ADD",
+                "department": "Maritime Surveillance Division",
+                "to_ministry": "Minister of Defence",
+                "position": 5
+            },
+            {
+                "type": "ADD",
+                "department": "Rural Health Outreach Unit",
+                "to_ministry": "Minister of Health",
+                "position": 7
+            },
+            {
+                "type": "ADD",
+                "department": "National Productivity Secretariat",
+                "to_ministry": "Minister of Labour",
+                "position": 5
+            },
+            {
+                "type": "ADD",
+                "department": "Employment Services Division",
+                "to_ministry": "Minister of Labour",
+                "position": 6
+            },
+            {
+                "type": "ADD",
+                "department": "Ceylon Petroleum Corporation",
+                "to_ministry": "Minister of Energy",
+                "position": 4
+            },
+            {
+                "type": "ADD",
+                "department": "Tax Appeals Commission",
+                "to_ministry": "Minister of Finance",
+                "position": 2
+            },
+            {
+                "type": "ADD",
+                "department": "Department of Public Finance",
+                "to_ministry": "Minister of Finance",
+                "position": 5
+            },
+            {
+                "type": "ADD",
+                "department": "Development Lotteries Board",
+                "to_ministry": "Minister of Finance",
+                "position": 8
+            }
+        ],
+        "terminates": [
+            {
+                "type": "TERMINATE",
+                "department": "Water Resources Board",
+                "from_ministry": "Minister of Environment"
+            },
+            {
+                "type": "TERMINATE",
+                "department": "Sustainable Development Council",
+                "from_ministry": "Minister of Environment"
+            },
+            {
+                "type": "TERMINATE",
+                "department": "General Treasury",
+                "from_ministry": "Minister of Finance"
+            },
+            {
+                "type": "TERMINATE",
+                "department": "Securities And Exchange Commission",
+                "from_ministry": "Minister of Finance"
+            }
+        ]
+    }
+}

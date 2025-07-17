@@ -1,0 +1,169 @@
+{
+  "persons": [
+    {
+      "person_name": "Hon. Dr. Sarath Amunugama",
+      "portfolios": [
+        {
+          "name": "Ministry of Science, Technology & Research",
+          "position": "Minister"
+        },
+        {
+          "name": "Ministry of Skills Development & Vocational Training",
+          "position": "Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Ranjith Siyambalapitiya",
+      "portfolios": [
+        {
+          "name": "Ministry of Disaster Management",
+          "position": "Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Faiszer Musthapha",
+      "portfolios": [
+        {
+          "name": "Ministry of Sports",
+          "position": "Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Malik Samarawickrema",
+      "portfolios": [
+        {
+          "name": "Ministry of Social Empowerment, Welfare & Kandyan Heritage",
+          "position": "Minister"
+        },
+        {
+          "name": "Ministry of Labour, Trade Union Relations and Sabaragamu Development",
+          "position": "Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Kabir Hashim",
+      "portfolios": [
+        {
+          "name": "Ministry of Highways and Road Development",
+          "position": "Deputy Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Thalatha Atukorale",
+      "portfolios": [
+        {
+          "name": "Ministry of Justice and Prison Reforms",
+          "position": "Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Dr. Harsha de Silva",
+      "portfolios": [
+        {
+          "name": "Ministry of National Policies and Economic Affairs",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Ruwan Wijewardene",
+      "portfolios": [
+        {
+          "name": "Ministry of Defence",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Sujeewa Senasinghe",
+      "portfolios": [
+        {
+          "name": "Ministry of International Trade",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Eran Wickramaratne",
+      "portfolios": [
+        {
+          "name": "Ministry of Finance",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Vijayakala Maheswaran",
+      "portfolios": [
+        {
+          "name": "Ministry of Child Affairs",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Dilip Wedaarachchi",
+      "portfolios": [
+        {
+          "name": "Ministry of Fisheries and Aquatic Resources Development",
+          "position": "State Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Ranjan Ramanayake",
+      "portfolios": [
+        {
+          "name": "Ministry of Social Empowerment, Welfare and Kandyan Heritage",
+          "position": "Deputy Minister"
+        },
+        {
+          "name": "Ministry of Skills Development and Vocational Training",
+          "position": "Deputy Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. A.H.M. Fowzie",
+      "portfolios": [
+        {
+          "name": "Ministry of Disaster Management",
+          "position": "Deputy Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Ajith P. Perera",
+      "portfolios": [
+        {
+          "name": "Ministry of Power and Renewable Energy",
+          "position": "Deputy Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Angajan Ramanathan",
+      "portfolios": [
+        {
+          "name": "Ministry of Agriculture",
+          "position": "Deputy Minister"
+        }
+      ]
+    },
+    {
+      "person_name": "Hon. Karunarathna Paranawithana",
+      "portfolios": [
+        {
+          "name": "Ministry of Internal Affairs and Wayamba Development",
+          "position": "Deputy Minister"
+        }
+      ]
+    }
+  ]
+}

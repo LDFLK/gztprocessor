@@ -1,0 +1,152 @@
+[
+    {
+        "name": "Minister of Defence",
+        "departments": [
+            "Api Wenuwen Api Fund",
+            "Civil Security Department",
+            "Coast Guard Department",
+            "Defence Research Centre",
+            "Department of Meteorology",
+            "Disaster Management Centre",
+            "National Cadet Corps",
+            "Sri Lanka Army",
+            "Sri Lanka Navy",
+            "State Intelligence Service"
+        ]
+    },
+    {
+        "name": "Minister of Finance",
+        "departments": [
+            "Central Bank of Sri Lanka",
+            "Department of Inland Revenue",
+            "Department of Customs",
+            "Public Debt Management Office",
+            "Securities and Exchange Commission",
+            "National Lotteries Board",
+            "Employees’ Trust Fund",
+            "General Treasury",
+            "Insurance Regulatory Commission",
+            "Sri Lanka Export Development Board"
+        ]
+    },
+    {
+        "name": "Minister of Energy",
+        "departments": [
+            "Ceylon Electricity Board",
+            "Ceylon Petroleum Corporation",
+            "Sri Lanka Sustainable Energy Authority",
+            "Petroleum Development Authority",
+            "Electricity Generation and Distribution",
+            "Energy Policy and Regulation",
+            "Renewable Energy Division",
+            "Oil Refining Unit",
+            "Rural Electrification Programme",
+            "Energy Trading Hub"
+        ]
+    },
+    {
+        "name": "Minister of Agriculture",
+        "departments": [
+            "Department of Agriculture",
+            "Department of Irrigation",
+            "Department of Animal Production",
+            "National Fertilizer Secretariat",
+            "Agricultural Research Institute",
+            "Paddy Marketing Board",
+            "Fisheries and Aquatic Resources",
+            "Land Reform Commission",
+            "Mahaweli Authority",
+            "Tea Small Holdings Development Authority"
+        ]
+    },
+    {
+        "name": "Minister of Justice",
+        "departments": [
+            "Attorney General’s Department",
+            "Department of Prisons",
+            "Department of Legal Affairs",
+            "Legal Aid Commission",
+            "Law Commission",
+            "Judicial Services Commission",
+            "Human Rights Commission",
+            "Public Trustee Department",
+            "Department of Immigration",
+            "Commercial Mediation Centre"
+        ]
+    },
+    {
+        "name": "Minister of Education",
+        "departments": [
+            "Department of Examinations",
+            "Department of Education Publications",
+            "Teacher Training Institute",
+            "National Institute of Education",
+            "School Development Division",
+            "Technical Education Authority",
+            "Higher Education Grants Commission",
+            "Vocational Training Authority",
+            "School Infrastructure Development",
+            "Student Welfare Division"
+        ]
+    },
+    {
+        "name": "Minister of Health",
+        "departments": [
+            "Department of Health Services",
+            "National Institute of Infectious Diseases",
+            "Drug Regulatory Authority",
+            "Medical Supplies Division",
+            "Public Health Inspectorate",
+            "Hospital Development Authority",
+            "Mental Health Services",
+            "Nutrition Division",
+            "Traditional Medicine Authority",
+            "Disease Control Unit"
+        ]
+    },
+    {
+        "name": "Minister of Transport",
+        "departments": [
+            "Department of Motor Traffic",
+            "Sri Lanka Railways",
+            "National Transport Commission",
+            "Civil Aviation Authority",
+            "Road Development Authority",
+            "Ports Authority",
+            "Public Transport Service",
+            "Traffic Police Division",
+            "Maritime Safety Authority",
+            "Vehicle Registration Office"
+        ]
+    },
+    {
+        "name": "Minister of Environment",
+        "departments": [
+            "Central Environmental Authority",
+            "Forest Department",
+            "Wildlife Conservation Department",
+            "Pollution Control Board",
+            "Climate Change Secretariat",
+            "Environmental Impact Assessment Division",
+            "Marine Conservation Authority",
+            "National Parks and Reserves",
+            "Sustainable Development Council",
+            "Water Resources Board"
+        ]
+    },
+    {
+        "name": "Minister of Labour",
+        "departments": [
+            "Department of Labour",
+            "National Institute of Labour Studies",
+            "Employment Services Division",
+            "Workers’ Compensation Authority",
+            "Trade Union Relations Board",
+            "Occupational Safety and Health",
+            "Labour Tribunal",
+            "Foreign Employment Bureau",
+            "Social Security Board",
+            "Vocational Rehabilitation Centre"
+        ]
+    }
+]

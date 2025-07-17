@@ -1,0 +1,55 @@
+{
+    "transactions": {
+        "moves": [
+            {
+                "type": "MOVE",
+                "department": "Disaster Management Centre",
+                "from_ministry": "Minister of Defence",
+                "to_ministry": "Minister of Environment",
+                "position": 2
+            },
+            {
+                "type": "MOVE",
+                "department": "Coast Guard Department",
+                "from_ministry": "Minister of Defence",
+                "to_ministry": "Minister of Environment",
+                "position": 5
+            },
+            {
+                "type": "MOVE",
+                "department": "Occupational Safety and Health",
+                "from_ministry": "Minister of Environment",
+                "to_ministry": "Minister of Labour",
+                "position": 10
+            },
+            {
+                "type": "MOVE",
+                "department": "Mahaweli Authority",
+                "from_ministry": "Minister of Environment",
+                "to_ministry": "Minister of Agriculture",
+                "position": 10
+            }
+        ],
+        "adds": [
+            {
+                "type": "ADD",
+                "department": "Vocational Training Authority",
+                "to_ministry": "Minister of Labour",
+                "position": 4
+            },
+            {
+                "type": "ADD",
+                "department": "Defence Innovation Centre",
+                "to_ministry": "Minister of Defence",
+                "position": 6
+            }
+        ],
+        "terminates": [
+            {
+                "type": "TERMINATE",
+                "department": "Social Security Board",
+                "from_ministry": "Minister of Labour"
+            }
+        ]
+    }
+}

@@ -1,0 +1,126 @@
+{
+  "ADD": [
+    {
+      "name": "Hon. Dr. Sarath Amunugama",
+      "Ministry": "Ministry of Science, Technology & Research",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Dr. Sarath Amunugama",
+      "Ministry": "Ministry of Skills Development & Vocational Training",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Ranjith Siyambalapitiya",
+      "Ministry": "Ministry of Disaster Management",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Faiszer Musthapha",
+      "Ministry": "Ministry of Sports",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Malik Samarawickrema",
+      "Ministry": "Ministry of Social Empowerment, Welfare & Kandyan Heritage",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Malik Samarawickrema",
+      "Ministry": "Ministry of Labour, Trade Union Relations and Sabaragamu Development",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Kabir Hashim",
+      "Ministry": "Ministry of Highways and Road Development",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Thalatha Atukorale",
+      "Ministry": "Ministry of Justice and Prison Reforms",
+      "date": "2018-04-12",
+      "position": "Minister"
+    },
+
+    {
+      "name": "Hon. Dr. Harsha de Silva",
+      "Ministry": "Ministry of National Policies and Economic Affairs",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+    {
+      "name": "Hon. Ruwan Wijewardene",
+      "Ministry": "Ministry of Defence",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+    {
+      "name": "Hon. Sujeewa Senasinghe",
+      "Ministry": "Ministry of International Trade",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+    {
+      "name": "Hon. Eran Wickramaratne",
+      "Ministry": "Ministry of Finance",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+    {
+      "name": "Hon. Vijayakala Maheswaran",
+      "Ministry": "Ministry of Child Affairs",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+    {
+      "name": "Hon. Dilip Wedaarachchi",
+      "Ministry": "Ministry of Fisheries and Aquatic Resources Development",
+      "date": "2018-04-12",
+      "position": "State Minister"
+    },
+
+    {
+      "name": "Hon. Ranjan Ramanayake",
+      "Ministry": "Ministry of Social Empowerment, Welfare and Kandyan Heritage",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    },
+    {
+      "name": "Hon. Ranjan Ramanayake",
+      "Ministry": "Ministry of Skills Development and Vocational Training",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    },
+    {
+      "name": "Hon. A.H.M. Fowzie",
+      "Ministry": "Ministry of Disaster Management",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    },
+    {
+      "name": "Hon. Ajith P. Perera",
+      "Ministry": "Ministry of Power and Renewable Energy",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    },
+    {
+      "name": "Hon. Angajan Ramanathan",
+      "Ministry": "Ministry of Agriculture",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    },
+    {
+      "name": "Hon. Karunarathna Paranawithana",
+      "Ministry": "Ministry of Internal Affairs and Wayamba Development",
+      "date": "2018-04-12",
+      "position": "Deputy Minister"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "ADD": [
+    {
+      "ministry_name": "Minister of Environment",
+      "affected_column": "II",
+      "details": [
+        "Inserted: item 2 — Disaster Management Centre",
+        "Inserted: item 5 — Coast Guard Department"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Agriculture",
+      "affected_column": "II",
+      "details": [
+        "Inserted: item 10 — Mahaweli Authority"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Labour",
+      "affected_column": "II",
+      "details": [
+        "Inserted: item 10 — Occupational Safety and Health"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Defence",
+      "affected_column": "II",
+      "details": [
+        "Inserted: item 6 — Defence Innovation Centre"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Labour",
+      "affected_column": "II",
+      "details": [
+        "Inserted: item 4 — Vocational Training Authority"
+      ]
+    }
+  ],
+  "OMIT": [
+    {
+      "ministry_name": "Minister of Defence",
+      "affected_column": "II",
+      "details": [
+        "Omitted: item 9",
+        "Omitted: item 6"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Environment",
+      "affected_column": "II",
+      "details": [
+        "Omitted: item 4",
+        "Omitted: item 5"
+      ]
+    },
+    {
+      "ministry_name": "Minister of Labour",
+      "affected_column": "II",
+      "details": [
+        "Omitted: item 8"
+      ]
+    }
+  ]
+}
