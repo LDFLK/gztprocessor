@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS person;
 
 CREATE TABLE person (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    gazette_number TEXT NOT NULL,
+    date TEXT NOT NULL
 );
 
 CREATE TABLE portfolio (
@@ -11,5 +13,7 @@ CREATE TABLE portfolio (
     name TEXT NOT NULL,
     position TEXT NOT NULL,
     person_id INTEGER, 
+    gazette_number TEXT NOT NULL,
+    date TEXT NOT NULL,
     FOREIGN KEY(person_id) REFERENCES person(id)
 );

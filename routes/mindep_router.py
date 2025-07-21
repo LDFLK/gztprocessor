@@ -60,12 +60,6 @@ def create_state_from_amendment_gazette(gazette_number: str, date: str, transact
     Apply user-reviewed transactions and save new state snapshot.
     """
     try:
-        transactions = transactions.get("transactions", {})
-        transactions = (
-            transactions.get("moves", []) +
-            transactions.get("adds", []) +
-            transactions.get("terminates", [])
-        )
         mindep_database.apply_transactions_to_db(gazette_number, date, transactions)
         csv_writer.generate_amendment_csvs(gazette_number, date, transactions)
         return {"message": f"State updated for amendment gazette {gazette_number} on {date}"}

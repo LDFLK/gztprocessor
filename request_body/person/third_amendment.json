@@ -1,0 +1,30 @@
+{
+    "transactions": {
+        "moves": [],
+        "adds": [],
+        "terminates": [],
+        "renames": [
+            {
+                "type": "RENAME",
+                "name": "Hon. Dr. Sarath Amunugama",
+                "old_ministry": "Ministry of Skills Development & Vocational Training",
+                "new_ministry": "Ministry of Skills Development, Vocational Training and Innovation",
+                "date": "2018-06-20"
+            },
+            {
+                "type": "RENAME",
+                "name": "Hon. Thalatha Atukorale",
+                "old_ministry": "Ministry of Justice",
+                "new_ministry": "Ministry of Justice and Legal Reforms",
+                "date": "2018-06-20"
+            },
+            {
+                "type": "RENAME",
+                "name": "Hon. Ranjith Siyambalapitiya",
+                "old_ministry": "Ministry of Disaster Management",
+                "new_ministry": "Ministry of Disaster Management and Relief",
+                "date": "2018-06-20"
+            }
+        ]
+    }
+}

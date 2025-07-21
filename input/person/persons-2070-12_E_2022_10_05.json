@@ -1,32 +1,25 @@
-{"RENAME": [
-  {
-    "name": "Dr. Sarath Amunugama",
-    "old ministry": "Ministry of Skills Development & Vocational Training",
-    "new ministry": "Ministry of Skills Development, Vocational Training and Innovation",
-    "date": "2018-06-20",
-    "position": "Minister"
-  },
-  {
-    "name": "Ranjith Siyambalapitiya",
-    "old ministry": "Ministry of Disaster Management",
-    "new ministry": "Ministry of Disaster Management and Relief",
-    "date": "2018-06-20",
-    "position": "Minister"
-  },
-  {
-    "name": "Thalatha Atukorale",
-    "old ministry": "Ministry of Justice and Prison Reforms",
-    "new ministry": "Ministry of Justice and Legal Reforms",
-    "date": "2018-06-20",
-    "position": "Minister"
-  },
-  {
-    "name": "Anoma Gamage",
-    "old ministry": "Ministry of Agriculture",
-    "new ministry": "Ministry of Agriculture and Agrarian Services",
-    "date": "2018-06-20",
-    "position": "Deputy Minister"
-  }
-]
-
+{
+  "RENAME": [
+    {
+      "name": "Hon. Dr. Sarath Amunugama",
+      "old_ministry": "Ministry of Skills Development & Vocational Training",
+      "new_ministry": "Ministry of Skills Development, Vocational Training and Innovation",
+      "date": "2018-06-20",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Thalatha Atukorale",
+      "old_ministry": "Ministry of Justice",
+      "new_ministry": "Ministry of Justice and Legal Reforms",
+      "date": "2018-06-20",
+      "position": "Minister"
+    },
+    {
+      "name": "Hon. Ranjith Siyambalapitiya",
+      "old_ministry": "Ministry of Disaster Management",
+      "new_ministry": "Ministry of Disaster Management and Relief",
+      "date": "2018-06-20",
+      "position": "Minister"
+    }
+  ]
 }

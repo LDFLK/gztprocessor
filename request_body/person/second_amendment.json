@@ -1,0 +1,83 @@
+{
+    "transactions": {
+        "moves": [
+            {
+                "type": "MOVE",
+                "name": "Hon. Thalatha Atukorale",
+                "from_ministry": "Ministry of Justice and Prison Reforms",
+                "from_position": "Minister",
+                "to_ministry": "Ministry of Justice",
+                "to_position": "Minister",
+                "date": "2018-07-15"
+            }
+        ],
+        "adds": [
+            {
+                "type": "ADD",
+                "new_person": "Hon. Kabir Hashim",
+                "new_ministry": "Ministry of Roads and Highways",
+                "new_position": "Minister",
+                "date": "2018-07-15"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Harin Fernando",
+                "new_ministry": "Ministry of Digital Infrastructure",
+                "new_position": "Minister",
+                "date": "2018-07-15"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. P. Harrison",
+                "new_ministry": "Ministry of Social Welfare",
+                "new_position": "Minister",
+                "date": "2018-07-15"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ranjith Madduma Bandara",
+                "new_ministry": "Ministry of Labour",
+                "new_position": "Minister",
+                "date": "2018-07-15"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Vijayakala Maheswaran",
+                "new_ministry": "Ministry of Women, Child and Economic Affairs",
+                "new_position": "Minister",
+                "date": "2018-07-15"
+            }
+        ],
+        "terminates": [
+            {
+                "type": "TERMINATE",
+                "name": "Hon. Angajan Ramanathan",
+                "ministry": "Ministry of Agriculture",
+                "position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "TERMINATE",
+                "name": "Hon. Kabir Hashim",
+                "ministry": "Ministry of Highways and Road Development",
+                "position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "TERMINATE",
+                "name": "Hon. Malik Samarawickrema",
+                "ministry": "Ministry of Social Empowerment, Welfare & Kandyan Heritage",
+                "position": "Minister",
+                "date": "2018-04-12"
+            },
+             {
+                "type": "TERMINATE",
+                "name": "Hon. Malik Samarawickrema",
+                "ministry": "Ministry of Labour, Trade Union Relations and Sabaragamu Development",
+                "position": "Minister",
+                "date": "2018-04-12"
+            }
+
+        ]
+    }
+}

@@ -1,5 +1,4 @@
 # state_managers/mindep_state_manager.py
-
 from state_managers.state_manager import AbstractStateManager
 from db_connections.db_gov import get_connection
 from pathlib import Path
@@ -11,62 +10,55 @@ class MindepStateManager(AbstractStateManager):
         state_dir = project_root / "state" / "mindep"
         super().__init__(state_dir)
 
-    def export_state_snapshot(self, gazette_number: str, date_str: str):
+    def get_connection(self):
+        return get_connection()
+
+    def get_latest_db_row(self, cur):
+        cur.execute("SELECT gazette_number, date FROM ministry ORDER BY date DESC, gazette_number DESC LIMIT 1")
+        row = cur.fetchone()
+        if not row:
+            raise FileNotFoundError("No state found in ministry DB.")
+        return row
+
+    def get_gazette_numbers_for_date(self, cur, date_str: str) -> list[str]:
+        cur.execute("SELECT gazette_number FROM ministry WHERE date = ? GROUP BY gazette_number", (date_str,))
+        return [row[0] for row in cur.fetchall()]
+
+    def get_latest_state_info(self, cur, gazette_number, date_str):
+        cur.execute(
+            """
+            SELECT gazette_number, date FROM ministry
+            WHERE (date < ? OR (date = ? AND gazette_number < ?))
+            ORDER BY date DESC, gazette_number DESC LIMIT 1
+            """,
+            (date_str, date_str, gazette_number)
+        )
+        row = cur.fetchone()
+        if not row:
+            raise FileNotFoundError("No previous state found in ministry DB.")
+        return row
+
+    def _get_state_from_db(self, cur, gazette_number: str, date_str: str) -> dict:
         snapshot = {"ministers": []}
+        cur.execute("SELECT id, name FROM ministry WHERE gazette_number = ? AND date = ? ORDER BY id ASC", (gazette_number, date_str))
+        for ministry_id, ministry_name in cur.fetchall():
+            cur.execute(
+                "SELECT name FROM department WHERE ministry_id = ? AND gazette_number = ? AND date = ? ORDER BY position ASC",
+                (ministry_id, gazette_number, date_str),
+            )
+            departments = [row[0] for row in cur.fetchall()]
+            snapshot["ministers"].append({
+                "name": ministry_name,
+                "departments": departments
+            })
+        return snapshot
 
-        try:
-            with get_connection() as conn:
-                cur = conn.cursor()
-
-                cur.execute("SELECT id, name FROM ministry ORDER BY id ASC")
-                ministries = cur.fetchall()
-
-                for ministry_id, ministry_name in ministries:
-                    cur.execute(
-                        "SELECT name FROM department WHERE ministry_id = ? ORDER BY position ASC",
-                        (ministry_id,),
-                    )
-                    departments = [row[0] for row in cur.fetchall()]
-                    snapshot["ministers"].append({
-                        "name": ministry_name,
-                        "departments": departments
-                    })
-
-        except Exception as e:
-            raise RuntimeError(f"Failed to query state data: {e}")
-
-        try:
-            state_path = self.get_state_file_path(gazette_number, date_str)
-            with open(state_path, "w", encoding="utf-8") as f:
-                json.dump(snapshot, f, indent=2, ensure_ascii=False)
-            print(f"✅ State snapshot exported to {state_path}")
-        except IOError as e:
-            raise IOError(f"Failed to write state snapshot to {state_path}: {e}")
-
-    def load_state_to_db(self, gazette_number: str, date_str: str):
-        state_data = self.load_state(gazette_number, date_str)
-        ministries = state_data.get("ministers", [])
-
-        if not ministries:
-            raise ValueError(f"No ministries found in state file for {date_str}")
-
-        with get_connection() as conn:
-            cur = conn.cursor()
-            cur.execute("DELETE FROM department")
-            cur.execute("DELETE FROM ministry")
-
-            for ministry in ministries:
-                cur.execute("INSERT INTO ministry (name) VALUES (?)", (ministry["name"],))
-                ministry_id = cur.lastrowid
-
-                for pos, dept in enumerate(ministry["departments"], start=1):
-                    cur.execute(
-                        "INSERT INTO department (name, ministry_id, position) VALUES (?, ?, ?)",
-                        (dept, ministry_id, pos),
-                    )
-            conn.commit()
-
-        print(f"✅ Loaded state for {date_str} into the database.")
+    def export_state_snapshot(self, gazette_number: str, date_str: str):
+        state = self._get_state_from_db(self.get_connection().cursor(), gazette_number, date_str)
+        state_path = self.get_state_file_path(gazette_number, date_str)
+        with open(state_path, "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2, ensure_ascii=False)
+        print(f"✅ Mindep snapshot exported to {state_path}")
 
     def clear_db(self):
         with get_connection() as conn:
@@ -74,4 +66,4 @@ class MindepStateManager(AbstractStateManager):
             cur.execute("DELETE FROM department")
             cur.execute("DELETE FROM ministry")
             conn.commit()
-        print(" Ministry and department tables cleared.")
+        print("🧹 Ministry and department tables cleared.")

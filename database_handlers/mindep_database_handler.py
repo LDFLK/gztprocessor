@@ -5,90 +5,86 @@ from state_managers.mindep_state_manager import MindepStateManager
 mindep_state_manager = MindepStateManager()
 
 def load_initial_state_to_db(gazette_number: str, date_str: str, ministries: list[dict]):
-    """
-    Load the first full structure into the database and save a state snapshot.
-    Expects JSON format:
-    {
-      "ministries": [
-        {
-          "name": "Minister of X",
-          "departments": ["Dept A", "Dept B"]
-        }
-      ]
-    }
-    Saves state to DB and also state/state_<date_str>.json
-    """
-    try:
-        with get_connection() as conn:
-            cur = conn.cursor()
-
-            for ministry in ministries:
-                cur.execute(
-                    "INSERT INTO ministry (name) VALUES (?)",
-                    (ministry["name"],),
-                )
-                ministry_id = cur.lastrowid
-
-                position = 1  # reset for each ministry
-                for dept in ministry["departments"]:
-                    cur.execute(
-                        "INSERT INTO department (name, ministry_id, position) VALUES (?, ?, ?)",
-                        (dept, ministry_id, position),
-                    )
-                    position += 1
-
-            conn.commit()
-    except Exception as e:
-        raise RuntimeError(f"Failed to insert initial state into database: {e}")
-
-    print(f"Initial state inserted into database for {date_str}")
-
-    # Export the inserted state back to a JSON file as a snapshot
-    try:
-        mindep_state_manager.export_state_snapshot(gazette_number, date_str)
-    except Exception as e:
-        raise RuntimeError(f"Failed to export state snapshot: {e}")
-
-
-def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: list[dict]):
-
     with get_connection() as conn:
         cur = conn.cursor()
 
-        # Step 1: Load current structure from DB
-        ministry_depts = defaultdict(
-            list
-        )  # ministry_name -> [department_name1, department_name2, ...]
+        # 1. Delete all ministries and departments for the incoming gazette_number and date_str
+        cur.execute("SELECT id FROM ministry WHERE gazette_number = ? AND date = ?", (gazette_number, date_str))
+        ministry_ids = [r[0] for r in cur.fetchall()]
+        if ministry_ids:
+            cur.execute("DELETE FROM department WHERE ministry_id IN ({})".format(",".join(["?"]*len(ministry_ids))), ministry_ids)
+            cur.execute("DELETE FROM ministry WHERE gazette_number = ? AND date = ?", (gazette_number, date_str))
 
-        cur.execute(
-            """
-            SELECT m.name, d.name 
-            FROM ministry m 
-            JOIN department d ON m.id = d.ministry_id 
-            ORDER BY m.id, d.position
-        """
+        # 2. Insert the new initial state
+        for ministry in ministries:
+            cur.execute(
+                "INSERT INTO ministry (name, gazette_number, date) VALUES (?, ?, ?)",
+                (ministry["name"], gazette_number, date_str)
+            )
+            ministry_id = cur.lastrowid
+            position = 1
+            for dept in ministry["departments"]:
+                cur.execute(
+                    "INSERT INTO department (name, ministry_id, position, gazette_number, date) VALUES (?, ?, ?, ?, ?)",
+                    (dept, ministry_id, position, gazette_number, date_str)
+                )
+                position += 1
+
+        conn.commit()
+
+    mindep_state_manager.export_state_snapshot(gazette_number, date_str)
+    print(f"Initial state replaced for gazette {gazette_number} on {date_str}.")
+
+
+def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: dict):
+    if isinstance(transactions, dict) and "transactions" in transactions:
+        transactions = transactions["transactions"]
+    if isinstance(transactions, dict):
+        transactions = (
+            transactions.get("moves", []) +
+            transactions.get("adds", []) +
+            transactions.get("terminates", [])
         )
-        for ministry_name, dept_name in cur.fetchall():
-            ministry_depts[ministry_name].append(dept_name)
+        
+    with get_connection() as conn:
+        cur = conn.cursor()
 
-        # Step 2: Apply transactions in memory
+        # 1. Get the latest gazette_number and date in the DB
+        cur.execute("SELECT gazette_number, date FROM ministry ORDER BY date DESC, gazette_number DESC LIMIT 1")
+        row = cur.fetchone()
+        if row:
+            latest_gazette, latest_date = row
+        else:
+            # No data yet, return
+            return
+        # 2. Load the latest state into memory
+        ministry_depts = defaultdict(list)
+        if row:
+            cur.execute(
+                """
+                SELECT m.name, d.name
+                FROM ministry m
+                JOIN department d ON m.id = d.ministry_id
+                WHERE m.gazette_number = ? AND m.date = ? AND d.gazette_number = ? AND d.date = ?
+                ORDER BY m.id, d.position
+                """,
+                (latest_gazette, latest_date, latest_gazette, latest_date)
+            )
+            for ministry_name, dept_name in cur.fetchall():
+                ministry_depts[ministry_name].append(dept_name)
+
+        # 3. Apply transactions in memory (your existing logic)
         for tx in transactions:
             t = tx["type"]
             dept = tx["department"]
-
             if t == "MOVE":
                 from_min = tx["from_ministry"]
                 to_min = tx["to_ministry"]
                 pos = tx.get("position")
-
                 if dept not in ministry_depts[from_min]:
                     print(f"⚠️ {dept} not found in {from_min}")
                     continue
-
-                # Remove from old ministry
                 ministry_depts[from_min].remove(dept)
-
-                # Insert into new ministry at correct position
                 if pos is not None:
                     insert_at = pos - 1
                     if insert_at < 0:
@@ -96,15 +92,11 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: l
                     ministry_depts[to_min].insert(insert_at, dept)
                 else:
                     ministry_depts[to_min].append(dept)
-
             elif t == "ADD":
                 to_min = tx["to_ministry"]
                 pos = tx.get("position")
-
-                # Avoid duplicates
                 if dept in ministry_depts[to_min]:
                     continue
-
                 if pos is not None:
                     insert_at = pos - 1
                     if insert_at < 0:
@@ -112,35 +104,35 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: l
                     ministry_depts[to_min].insert(insert_at, dept)
                 else:
                     ministry_depts[to_min].append(dept)
-
             elif t == "TERMINATE":
                 from_min = tx["from_ministry"]
                 if dept in ministry_depts[from_min]:
                     ministry_depts[from_min].remove(dept)
 
-        # Step 3: Clear all departments
-        cur.execute("DELETE FROM department")
+        # 4. Delete all ministries and departments for the incoming gazette_number and date_str
+        cur.execute("SELECT id FROM ministry WHERE gazette_number = ? AND date = ?", (gazette_number, date_str))
+        ministry_ids = [r[0] for r in cur.fetchall()]
+        if ministry_ids:
+            cur.execute("DELETE FROM department WHERE ministry_id IN ({})".format(",".join(["?"]*len(ministry_ids))), ministry_ids)
+            cur.execute("DELETE FROM ministry WHERE gazette_number = ? AND date = ?", (gazette_number, date_str))
 
-        # Step 4: Re-insert departments with correct positions
+        # 5. Insert the new state for the incoming gazette_number and date_str
+        ministry_id_map = {}
         for ministry_name, departments in ministry_depts.items():
-            # Get or create ministry
-            cur.execute("SELECT id FROM ministry WHERE name = ?", (ministry_name,))
-            row = cur.fetchone()
-            if row:
-                ministry_id = row[0]
-            else:
-                cur.execute("INSERT INTO ministry (name) VALUES (?)", (ministry_name,))
-                ministry_id = cur.lastrowid
-
+            cur.execute(
+                "INSERT INTO ministry (name, gazette_number, date) VALUES (?, ?, ?)",
+                (ministry_name, gazette_number, date_str)
+            )
+            ministry_id = cur.lastrowid
+            ministry_id_map[ministry_name] = ministry_id
             for idx, dept_name in enumerate(departments, start=1):
                 cur.execute(
-                    "INSERT INTO department (name, ministry_id, position) VALUES (?, ?, ?)",
-                    (dept_name, ministry_id, idx),
+                    "INSERT INTO department (name, ministry_id, position, gazette_number, date) VALUES (?, ?, ?, ?, ?)",
+                    (dept_name, ministry_id, idx, gazette_number, date_str)
                 )
 
         conn.commit()
-        print("DB updated with new positions")
+        print("DB updated with new positions (versioned, no deletes)")
 
-    # Step 5: Export state snapshot
-    mindep_state_manager.export_state_snapshot(gazette_number,date_str)
+    mindep_state_manager.export_state_snapshot(gazette_number, date_str)
     print(f"Exported state snapshot for {date_str}")

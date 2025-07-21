@@ -1,0 +1,148 @@
+{
+    "transactions": {
+        "moves": [],
+        "adds": [
+            {
+                "type": "ADD",
+                "new_person": "Hon. Dr. Sarath Amunugama",
+                "new_ministry": "Ministry of Science, Technology & Research",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Dr. Sarath Amunugama",
+                "new_ministry": "Ministry of Skills Development & Vocational Training",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ranjith Siyambalapitiya",
+                "new_ministry": "Ministry of Disaster Management",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Faiszer Musthapha",
+                "new_ministry": "Ministry of Sports",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Malik Samarawickrema",
+                "new_ministry": "Ministry of Social Empowerment, Welfare & Kandyan Heritage",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Malik Samarawickrema",
+                "new_ministry": "Ministry of Labour, Trade Union Relations and Sabaragamu Development",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Kabir Hashim",
+                "new_ministry": "Ministry of Highways and Road Development",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Thalatha Atukorale",
+                "new_ministry": "Ministry of Justice and Prison Reforms",
+                "new_position": "Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Dr. Harsha de Silva",
+                "new_ministry": "Ministry of National Policies and Economic Affairs",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ruwan Wijewardene",
+                "new_ministry": "Ministry of Defence",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Sujeewa Senasinghe",
+                "new_ministry": "Ministry of International Trade",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Eran Wickramaratne",
+                "new_ministry": "Ministry of Finance",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Vijayakala Maheswaran",
+                "new_ministry": "Ministry of Child Affairs",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Dilip Wedaarachchi",
+                "new_ministry": "Ministry of Fisheries and Aquatic Resources Development",
+                "new_position": "State Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ranjan Ramanayake",
+                "new_ministry": "Ministry of Social Empowerment, Welfare and Kandyan Heritage",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ranjan Ramanayake",
+                "new_ministry": "Ministry of Skills Development and Vocational Training",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. A.H.M. Fowzie",
+                "new_ministry": "Ministry of Disaster Management",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Ajith P. Perera",
+                "new_ministry": "Ministry of Power and Renewable Energy",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Angajan Ramanathan",
+                "new_ministry": "Ministry of Agriculture",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            },
+            {
+                "type": "ADD",
+                "new_person": "Hon. Karunarathna Paranawithana",
+                "new_ministry": "Ministry of Internal Affairs and Wayamba Development",
+                "new_position": "Deputy Minister",
+                "date": "2018-04-12"
+            }
+        ],
+        "terminates": []
+    }
+}

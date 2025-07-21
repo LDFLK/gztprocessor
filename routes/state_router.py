@@ -14,7 +14,7 @@ def create_state_routes(prefix: str, state_manager: AbstractStateManager) -> API
                 "state": state
             }
         except FileNotFoundError:
-            return {"error": "No state files found."}
+            return {"error": "No state versions found."}
         except ValueError as e:
             return {"error": str(e)}
 
@@ -44,15 +44,7 @@ def create_state_routes(prefix: str, state_manager: AbstractStateManager) -> API
             state = state_manager.load_state(gazette_number, date)
             return {"gazette_number": gazette_number, "date": date, "state": state}
         except FileNotFoundError:
-            return {"error": "No state file found."}
-
-    @router.post("/{date}/{gazette_number}")
-    def load_state_to_db_by_gazette_and_date(gazette_number: str, date: str):
-        try:
-            state_manager.load_state_to_db(gazette_number, date)
-            return {"message": f"Loaded state for gazette {gazette_number} on {date} to DB"}
-        except FileNotFoundError:
-            return {"error": f"State file for gazette {gazette_number} on {date} not found."}
+            return {"error": "No state version found."}
         
     @router.delete("/reset")
     def reset_state():

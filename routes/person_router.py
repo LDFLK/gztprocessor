@@ -35,7 +35,7 @@ def create_state_from_person_gazette(date: str, gazette_number: str, payload: di
         transactions = payload.get("transactions", {})
 
         person_database.apply_transactions_to_db(gazette_number, date, transactions)
-
+        csv_writer.generate_person_csvs(gazette_number, date, transactions)
         return {
             "message": f"State updated for amendment gazette {gazette_number} on {date}"
         }

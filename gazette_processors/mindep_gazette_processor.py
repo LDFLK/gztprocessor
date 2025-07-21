@@ -16,6 +16,7 @@ def extract_initial_gazette_data(gazette_number: str, date_str: str) -> dict:
         )
     return ministries
 
+# TODO: Resolve this issue for renames: https://github.com/zaeema-n/orgchart_nexoan/issues/11#issue-3238949430
 
 def extract_column_II_department_changes(gazette_number: str, date_str: str) -> tuple[list[dict], list[dict]]:
     data = utils.load_mindep_gazette_data_from_JSON(gazette_number, date_str)
@@ -78,20 +79,22 @@ def extract_column_II_department_changes(gazette_number: str, date_str: str) -> 
     return added_departments, removed_departments_raw
 
 
-def resolve_omitted_items(removed_departments_raw: list[dict], previous_gazette_number: str, previous_date: str) -> list[dict]:
+def resolve_omitted_items(removed_departments_raw: list[dict], gazette_number: str, date_str: str) -> list[dict]:
     resolved = []
     try:
         with get_connection() as conn:
             cur = conn.cursor()
+            prev_gazette_number, prev_date = mindep_state_manager.get_latest_state_info(cur, gazette_number, date_str)
 
             for entry in removed_departments_raw:
                 ministry = entry["ministry_name"]
-
-                cur.execute("SELECT id FROM ministry WHERE name = ?", (ministry,))
+            
+                # Select ministry id for the previous gazette_number and date
+                cur.execute("SELECT id FROM ministry WHERE name = ? AND gazette_number = ? AND date = ?", (ministry, prev_gazette_number, prev_date))
                 result = cur.fetchone()
                 if not result:
                     print(
-                        f"⚠️ Ministry '{ministry}' not found in DB (for gazette {previous_gazette_number} on {previous_date})"
+                        f"⚠️ Ministry '{ministry}' not found in DB (for gazette {prev_gazette_number} on {prev_date})"
                     )
                     continue
                 ministry_id = result[0]
@@ -101,9 +104,9 @@ def resolve_omitted_items(removed_departments_raw: list[dict], previous_gazette_
                         cur.execute(
                             """
                             SELECT name FROM department
-                            WHERE ministry_id = ? AND position = ?
+                            WHERE ministry_id = ? AND position = ? AND gazette_number = ? AND date = ?
                             """,
-                            (ministry_id, pos),
+                            (ministry_id, pos, prev_gazette_number, prev_date),
                         )
                         row = cur.fetchone()
                         if row:
@@ -113,7 +116,7 @@ def resolve_omitted_items(removed_departments_raw: list[dict], previous_gazette_
                             )
                         else:
                             print(
-                                f"⚠️ No department at position {pos} under {ministry} (gazette {previous_gazette_number} on {previous_date})"
+                                f"⚠️ No department at position {pos} under {ministry} (gazette {prev_gazette_number} on {prev_date})"
                             )
 
                 elif "omitted_names" in entry:
@@ -211,13 +214,7 @@ def process_amendment_gazette(gazette_number: str, date_str: str) -> list[dict]:
         print(f" Failed to extract column II changes for gazette {gazette_number} on {date_str}: {e}")
         return []
 
-    try:
-        prev_gazette_number, prev_date = mindep_state_manager.get_latest_state_date()
-    except FileNotFoundError:
-        print(f" No previous state found for gazette {gazette_number} on {date_str}. Cannot resolve changes.")
-        return []
-
-    resolved_removed = resolve_omitted_items(removed_raw, prev_gazette_number, prev_date)
+    resolved_removed = resolve_omitted_items(removed_raw, gazette_number, date_str)
     transactions = classify_department_changes(added, resolved_removed)
 
     return transactions

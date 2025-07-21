@@ -4,7 +4,9 @@ DROP TABLE IF EXISTS minister;
 
 CREATE TABLE ministry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    gazette_number TEXT NOT NULL,
+    date TEXT NOT NULL
 );
 
 CREATE TABLE department (
@@ -12,5 +14,7 @@ CREATE TABLE department (
     name TEXT NOT NULL,
     ministry_id INTEGER NOT NULL,
     position INTEGER NOT NULL,
+    gazette_number TEXT NOT NULL,
+    date TEXT NOT NULL,
     FOREIGN KEY(ministry_id) REFERENCES ministry(id)
 );
