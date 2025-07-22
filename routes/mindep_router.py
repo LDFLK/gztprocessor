@@ -3,11 +3,12 @@ from fastapi import APIRouter, Body
 from fastapi.params import Body
 from typing import List
 
-from state_managers.mindep_state_manager import MindepStateManager
-import gazette_processors.mindep_gazette_processor as mindep_gazette_processor
-import database_handlers.mindep_database_handler as mindep_database
-import csv_writer
+from gztprocessor.state_managers.mindep_state_manager import MindepStateManager
+import gztprocessor.gazette_processors.mindep_gazette_processor as mindep_gazette_processor
+import gztprocessor.database_handlers.mindep_database_handler as mindep_database
+import gztprocessor.csv_writer as csv_writer
 from routes.state_router import create_state_routes
+import utils as utils
 
 mindep_router = APIRouter()
 mindep_state_manager = MindepStateManager()
@@ -21,7 +22,8 @@ def get_contents_of_initial_gazette(gazette_number: str, date: str):
     Return contents of the initial gazette for given gazette number and date.
     """
     try:
-        data = mindep_gazette_processor.extract_initial_gazette_data(gazette_number, date)
+        data = utils.load_mindep_gazette_data_from_JSON(gazette_number, date)
+        data = mindep_gazette_processor.extract_initial_gazette_data(gazette_number, date, data)
         return data
     except FileNotFoundError:
         return {"error": f"Gazette file for {gazette_number}, {date} not found."}
@@ -48,7 +50,8 @@ def get_contents_of_amendment_gazette(gazette_number: str, date: str):
     Return the predicted transactions from the amendment gazette.
     """
     try:
-        transactions = mindep_gazette_processor.process_amendment_gazette(gazette_number, date)
+        data = utils.load_mindep_gazette_data_from_JSON(gazette_number, date)
+        transactions = mindep_gazette_processor.process_amendment_gazette(gazette_number, date, data)
         return transactions
     except FileNotFoundError:
         return {"error": f"Gazette file for {gazette_number}, {date} not found."}

@@ -1,6 +1,6 @@
 # database_handlers/person_database_handler.py
-from db_connections.db_person import get_connection
-from state_managers.person_state_manager import PersonStateManager
+from gztprocessor.db_connections.db_person import get_connection
+from gztprocessor.state_managers.person_state_manager import PersonStateManager
 
 person_state_manager = PersonStateManager()
 

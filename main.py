@@ -1,8 +1,8 @@
 # main.py
 from fastapi import FastAPI
 
-from db_connections.db_gov import init_db as init_gov_db
-from db_connections.db_person import init_db as init_person_db
+from gztprocessor.db_connections.db_gov import init_db as init_gov_db
+from gztprocessor.db_connections.db_person import init_db as init_person_db
 from routes.mindep_router import mindep_router
 from routes.person_router import person_router
 

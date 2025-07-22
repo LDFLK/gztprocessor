@@ -94,7 +94,7 @@ def generate_amendment_csvs(gazette_number: str, date_str: str, transactions: di
                 "parent_type": "minister",
                 "child": tx["department"],
                 "child_type": "department",
-                "rel_type": "REMOVED_DEPARTMENT",
+                "rel_type": "AS_DEPARTMENT",
                 "date": date_str
             })
 
@@ -104,7 +104,7 @@ def generate_amendment_csvs(gazette_number: str, date_str: str, transactions: di
                 "old_parent": tx["from_ministry"],
                 "new_parent": tx["to_ministry"],
                 "child": tx["department"],
-                "type": "MOVE",
+                "type": "AS_DEPARTMENT",
                 "date": date_str
             })
 
@@ -187,7 +187,7 @@ def generate_person_csvs(gazette_number: str, date_str: str, transactions: dict)
             "parent_type": tx["position"].lower().replace(" ", "_"),
             "child": tx["name"],
             "child_type": "person",
-            "rel_type": "REMOVED",
+            "rel_type": "AS_APPOINTED",
             "date": tx["date"]
         })
         counter += 1
@@ -222,7 +222,7 @@ def generate_person_csvs(gazette_number: str, date_str: str, transactions: dict)
             "parent_type": "minister", 
             "child": name,
             "child_type": "person",
-            "rel_type": "REMOVED",
+            "rel_type": "AS_APPOINTED",
             "date": date
         })
         counter += 1

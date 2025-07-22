@@ -1,6 +1,6 @@
-from db_connections.db_gov import get_connection
+from gztprocessor.db_connections.db_gov import get_connection
 from collections import defaultdict
-from state_managers.mindep_state_manager import MindepStateManager
+from gztprocessor.state_managers.mindep_state_manager import MindepStateManager
 
 mindep_state_manager = MindepStateManager()
 

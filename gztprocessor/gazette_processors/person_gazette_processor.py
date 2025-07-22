@@ -1,9 +1,8 @@
 import re
 from rapidfuzz import fuzz
-from db_connections.db_person import get_connection
+from gztprocessor.db_connections.db_person import get_connection
 from nltk.stem import PorterStemmer
-from state_managers.person_state_manager import PersonStateManager
-from utils import load_person_gazette_data_from_JSON
+from gztprocessor.state_managers.person_state_manager import PersonStateManager
 
 stemmer = PorterStemmer()
 person_state_manager = PersonStateManager()
@@ -68,8 +67,7 @@ def get_fuzzy_matches_for_ministry(ministry_name: str, gazette_number: str, date
     return sorted(matches, key=lambda x: x["score"], reverse=True)
 
 
-def process_person_gazette(gazette_number: str, date_str: str) -> dict:
-    data = load_person_gazette_data_from_JSON(gazette_number, date_str)
+def process_person_gazette(gazette_number: str, date_str: str, data: dict) -> dict:
     adds = data.get("ADD", [])
     terminates = data.get("TERMINATE", [])
     renames = data.get("RENAME", [])

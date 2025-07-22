@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from state_managers.state_manager import AbstractStateManager  # the shared base class
+from gztprocessor.state_managers.state_manager import AbstractStateManager  # the shared base class
 
 def create_state_routes(prefix: str, state_manager: AbstractStateManager) -> APIRouter:
     router = APIRouter(prefix=f"/{prefix}/state")

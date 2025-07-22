@@ -1,12 +1,12 @@
 # state_managers/mindep_state_manager.py
-from state_managers.state_manager import AbstractStateManager
-from db_connections.db_gov import get_connection
+from gztprocessor.state_managers.state_manager import AbstractStateManager
+from gztprocessor.db_connections.db_gov import get_connection
 from pathlib import Path
 import json
 
 class MindepStateManager(AbstractStateManager):
     def __init__(self):
-        project_root = Path(__file__).resolve().parent.parent
+        project_root = Path(__file__).resolve().parent.parent.parent
         state_dir = project_root / "state" / "mindep"
         super().__init__(state_dir)
 

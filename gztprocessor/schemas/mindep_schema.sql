@@ -1,6 +1,6 @@
 -- schema.sql
 DROP TABLE IF EXISTS department;
-DROP TABLE IF EXISTS minister;
+DROP TABLE IF EXISTS ministry;
 
 CREATE TABLE ministry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
