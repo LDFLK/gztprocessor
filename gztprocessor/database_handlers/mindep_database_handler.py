@@ -24,6 +24,7 @@ def load_initial_state_to_db(gazette_number: str, date_str: str, ministries: lis
             ministry_id = cur.lastrowid
             position = 1
             for dept in ministry["departments"]:
+                dept = dept["name"]
                 cur.execute(
                     "INSERT INTO department (name, ministry_id, position, gazette_number, date) VALUES (?, ?, ?, ?, ?)",
                     (dept, ministry_id, position, gazette_number, date_str)

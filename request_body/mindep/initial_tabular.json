@@ -2,151 +2,451 @@
     {
         "name": "Minister of Defence",
         "departments": [
-            "Api Wenuwen Api Fund",
-            "Civil Security Department",
-            "Coast Guard Department",
-            "Defence Research Centre",
-            "Department of Meteorology",
-            "Disaster Management Centre",
-            "National Cadet Corps",
-            "Sri Lanka Army",
-            "Sri Lanka Navy",
-            "State Intelligence Service"
+            {
+                "name": "Api Wenuwen Api Fund",
+                "previous_ministry": null
+            },
+            {
+                "name": "Civil Security Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Coast Guard Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Defence Research Centre",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Meteorology",
+                "previous_ministry": null
+            },
+            {
+                "name": "Disaster Management Centre",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Cadet Corps",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sri Lanka Army",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sri Lanka Navy",
+                "previous_ministry": null
+            },
+            {
+                "name": "State Intelligence Service",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Finance",
         "departments": [
-            "Central Bank of Sri Lanka",
-            "Department of Inland Revenue",
-            "Department of Customs",
-            "Public Debt Management Office",
-            "Securities and Exchange Commission",
-            "National Lotteries Board",
-            "Employees’ Trust Fund",
-            "General Treasury",
-            "Insurance Regulatory Commission",
-            "Sri Lanka Export Development Board"
+            {
+                "name": "Central Bank of Sri Lanka",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Inland Revenue",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Customs",
+                "previous_ministry": null
+            },
+            {
+                "name": "Public Debt Management Office",
+                "previous_ministry": null
+            },
+            {
+                "name": "Securities and Exchange Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Lotteries Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Employees’ Trust Fund",
+                "previous_ministry": null
+            },
+            {
+                "name": "General Treasury",
+                "previous_ministry": null
+            },
+            {
+                "name": "Insurance Regulatory Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sri Lanka Export Development Board",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Energy",
         "departments": [
-            "Ceylon Electricity Board",
-            "Ceylon Petroleum Corporation",
-            "Sri Lanka Sustainable Energy Authority",
-            "Petroleum Development Authority",
-            "Electricity Generation and Distribution",
-            "Energy Policy and Regulation",
-            "Renewable Energy Division",
-            "Oil Refining Unit",
-            "Rural Electrification Programme",
-            "Energy Trading Hub"
+            {
+                "name": "Ceylon Electricity Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Ceylon Petroleum Corporation",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sri Lanka Sustainable Energy Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Petroleum Development Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Electricity Generation and Distribution",
+                "previous_ministry": null
+            },
+            {
+                "name": "Energy Policy and Regulation",
+                "previous_ministry": null
+            },
+            {
+                "name": "Renewable Energy Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Oil Refining Unit",
+                "previous_ministry": null
+            },
+            {
+                "name": "Rural Electrification Programme",
+                "previous_ministry": null
+            },
+            {
+                "name": "Energy Trading Hub",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Agriculture",
         "departments": [
-            "Department of Agriculture",
-            "Department of Irrigation",
-            "Department of Animal Production",
-            "National Fertilizer Secretariat",
-            "Agricultural Research Institute",
-            "Paddy Marketing Board",
-            "Fisheries and Aquatic Resources",
-            "Land Reform Commission",
-            "Mahaweli Authority",
-            "Tea Small Holdings Development Authority"
+            {
+                "name": "Department of Agriculture",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Irrigation",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Animal Production",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Fertilizer Secretariat",
+                "previous_ministry": null
+            },
+            {
+                "name": "Agricultural Research Institute",
+                "previous_ministry": null
+            },
+            {
+                "name": "Paddy Marketing Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Fisheries and Aquatic Resources",
+                "previous_ministry": null
+            },
+            {
+                "name": "Land Reform Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Mahaweli Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Tea Small Holdings Development Authority",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Justice",
         "departments": [
-            "Attorney General’s Department",
-            "Department of Prisons",
-            "Department of Legal Affairs",
-            "Legal Aid Commission",
-            "Law Commission",
-            "Judicial Services Commission",
-            "Human Rights Commission",
-            "Public Trustee Department",
-            "Department of Immigration",
-            "Commercial Mediation Centre"
+            {
+                "name": "Attorney General’s Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Prisons",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Legal Affairs",
+                "previous_ministry": null
+            },
+            {
+                "name": "Legal Aid Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Law Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Judicial Services Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Human Rights Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Public Trustee Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Immigration",
+                "previous_ministry": null
+            },
+            {
+                "name": "Commercial Mediation Centre",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Education",
         "departments": [
-            "Department of Examinations",
-            "Department of Education Publications",
-            "Teacher Training Institute",
-            "National Institute of Education",
-            "School Development Division",
-            "Technical Education Authority",
-            "Higher Education Grants Commission",
-            "Vocational Training Authority",
-            "School Infrastructure Development",
-            "Student Welfare Division"
+            {
+                "name": "Department of Examinations",
+                "previous_ministry": null
+            },
+            {
+                "name": "Department of Education Publications",
+                "previous_ministry": null
+            },
+            {
+                "name": "Teacher Training Institute",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Institute of Education",
+                "previous_ministry": null
+            },
+            {
+                "name": "School Development Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Technical Education Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Higher Education Grants Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Vocational Training Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "School Infrastructure Development",
+                "previous_ministry": null
+            },
+            {
+                "name": "Student Welfare Division",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Health",
         "departments": [
-            "Department of Health Services",
-            "National Institute of Infectious Diseases",
-            "Drug Regulatory Authority",
-            "Medical Supplies Division",
-            "Public Health Inspectorate",
-            "Hospital Development Authority",
-            "Mental Health Services",
-            "Nutrition Division",
-            "Traditional Medicine Authority",
-            "Disease Control Unit"
+            {
+                "name": "Department of Health Services",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Institute of Infectious Diseases",
+                "previous_ministry": null
+            },
+            {
+                "name": "Drug Regulatory Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Medical Supplies Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Public Health Inspectorate",
+                "previous_ministry": null
+            },
+            {
+                "name": "Hospital Development Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Mental Health Services",
+                "previous_ministry": null
+            },
+            {
+                "name": "Nutrition Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Traditional Medicine Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Disease Control Unit",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Transport",
         "departments": [
-            "Department of Motor Traffic",
-            "Sri Lanka Railways",
-            "National Transport Commission",
-            "Civil Aviation Authority",
-            "Road Development Authority",
-            "Ports Authority",
-            "Public Transport Service",
-            "Traffic Police Division",
-            "Maritime Safety Authority",
-            "Vehicle Registration Office"
+            {
+                "name": "Department of Motor Traffic",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sri Lanka Railways",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Transport Commission",
+                "previous_ministry": null
+            },
+            {
+                "name": "Civil Aviation Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Road Development Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Ports Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Public Transport Service",
+                "previous_ministry": null
+            },
+            {
+                "name": "Traffic Police Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Maritime Safety Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Vehicle Registration Office",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Environment",
         "departments": [
-            "Central Environmental Authority",
-            "Forest Department",
-            "Wildlife Conservation Department",
-            "Pollution Control Board",
-            "Climate Change Secretariat",
-            "Environmental Impact Assessment Division",
-            "Marine Conservation Authority",
-            "National Parks and Reserves",
-            "Sustainable Development Council",
-            "Water Resources Board"
+            {
+                "name": "Central Environmental Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Forest Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Wildlife Conservation Department",
+                "previous_ministry": null
+            },
+            {
+                "name": "Pollution Control Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Climate Change Secretariat",
+                "previous_ministry": null
+            },
+            {
+                "name": "Environmental Impact Assessment Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Marine Conservation Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Parks and Reserves",
+                "previous_ministry": null
+            },
+            {
+                "name": "Sustainable Development Council",
+                "previous_ministry": null
+            },
+            {
+                "name": "Water Resources Board",
+                "previous_ministry": null
+            }
         ]
     },
     {
         "name": "Minister of Labour",
         "departments": [
-            "Department of Labour",
-            "National Institute of Labour Studies",
-            "Employment Services Division",
-            "Workers’ Compensation Authority",
-            "Trade Union Relations Board",
-            "Occupational Safety and Health",
-            "Labour Tribunal",
-            "Foreign Employment Bureau",
-            "Social Security Board",
-            "Vocational Rehabilitation Centre"
+            {
+                "name": "Department of Labour",
+                "previous_ministry": null
+            },
+            {
+                "name": "National Institute of Labour Studies",
+                "previous_ministry": null
+            },
+            {
+                "name": "Employment Services Division",
+                "previous_ministry": null
+            },
+            {
+                "name": "Workers’ Compensation Authority",
+                "previous_ministry": null
+            },
+            {
+                "name": "Trade Union Relations Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Occupational Safety and Health",
+                "previous_ministry": null
+            },
+            {
+                "name": "Labour Tribunal",
+                "previous_ministry": null
+            },
+            {
+                "name": "Foreign Employment Bureau",
+                "previous_ministry": null
+            },
+            {
+                "name": "Social Security Board",
+                "previous_ministry": null
+            },
+            {
+                "name": "Vocational Rehabilitation Centre",
+                "previous_ministry": null
+            }
         ]
     }
 ]

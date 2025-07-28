@@ -6,13 +6,60 @@ from gztprocessor.state_managers.mindep_state_manager import MindepStateManager
 
 mindep_state_manager = MindepStateManager()
 
+# TODO: resolve issue https://github.com/LDFLK/gztprocessor/issues/4
+# Currently the processor identifies a department that wasn't in previous gov's latest state as a new department assuming that all departments are always assigned to some portfolio at any given moment.
+def get_ministry_where_department_was_before(department_name: str, gazette_number: str, date_str: str
+) -> str:
+    """
+    Get the ministry where a department was before the current initial gazette.
+    This is used to determine the previous ministry for a department that has been moved.
+    """
+    try:
+        with get_connection() as conn:
+            cur = conn.cursor()
+            prev_gazette_number, prev_date = mindep_state_manager.get_latest_state_info(cur, gazette_number, date_str)
+
+            cur.execute(
+                """
+                SELECT m.name FROM department d
+                JOIN ministry m ON d.ministry_id = m.id
+                WHERE d.name = ? AND m.gazette_number = ? AND m.date = ?
+                """,
+                (department_name, prev_gazette_number, prev_date),
+            )
+            result = cur.fetchone()
+            if result:
+                return result[0]
+            else:
+                print(f"⚠️ Department '{department_name}' not found in previous gazette {prev_gazette_number} on {prev_date}")
+                return None
+    except Exception as e:
+        print(f"❗ Error fetching previous ministry for {department_name}: {e}")
+        return None
+
 def extract_initial_gazette_data(gazette_number: str, date_str: str, data: dict) -> dict:
     ministries = data.get("ministers", [])
     if not ministries:
         raise ValueError(
             f"No ministries found in input file for gazette {gazette_number} on {date_str}"
         )
+
+    # Iterate through ministries and attach previous ministry info
+    for ministry in ministries:
+        updated_departments = []
+        for department in ministry.get("departments", []):
+            previous_ministry = get_ministry_where_department_was_before(
+                department, gazette_number, date_str
+            )
+            updated_departments.append({
+                "name": department,
+                "previous_ministry": previous_ministry
+            })
+        # Replace string list with enriched department dicts
+        ministry["departments"] = updated_departments
+
     return ministries
+
 
 # TODO: Resolve this issue for renames: https://github.com/zaeema-n/orgchart_nexoan/issues/11#issue-3238949430
 

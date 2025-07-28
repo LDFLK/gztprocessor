@@ -1,0 +1,23 @@
+[project]
+name = "gztprocessor"
+version = "0.1.0"
+description = "A package to process Sri Lankan gazette data and generate CSV outputs to seed Neo4j database."
+authors = [{ name = "Sehansi Perera" }]
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+
+dependencies = [
+  "nltk",
+  "rapidfuzz"
+]
+
+[project.optional-dependencies]
+api = ["fastapi", "uvicorn"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["gztprocessor*"]

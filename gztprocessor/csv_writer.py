@@ -1,18 +1,18 @@
-import csv
 from pathlib import Path
+import csv
 
 def generate_initial_add_csv(gazette_number: str, date_str: str, structure: list[dict]):
-    output_dir = Path("output") / "mindep"/ date_str / gazette_number
+    output_dir = Path("output") / "mindep" / date_str / gazette_number
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    csv_path = output_dir / "add.csv"
-    rows = []
+    add_rows = []
+    move_rows = []
     counter = 1
 
-    # 1. Ministers → AS_MINISTER
+    # 1. Ministers → AS_MINISTER (always ADD)
     for minister in structure:
         transaction_id = f"{gazette_number}_tr_{counter:02d}"
-        rows.append({
+        add_rows.append({
             "transaction_id": transaction_id,
             "parent": "Government of Sri Lanka",
             "parent_type": "government",
@@ -23,30 +23,58 @@ def generate_initial_add_csv(gazette_number: str, date_str: str, structure: list
         })
         counter += 1
 
-    # 2. Departments → AS_DEPARTMENT
+    # 2. Departments → either ADD or MOVE
     for minister in structure:
         for dept in minister["departments"]:
             transaction_id = f"{gazette_number}_tr_{counter:02d}"
-            rows.append({
-                "transaction_id": transaction_id,
-                "parent": minister["name"],
-                "parent_type": "minister",
-                "child": dept,
-                "child_type": "department",
-                "rel_type": "AS_DEPARTMENT",
-                "date": date_str
-            })
+            dept_name = dept["name"]
+            prev_min = dept.get("previous_ministry")
+
+            if prev_min:
+                # MOVE
+                move_rows.append({
+                    "transaction_id": transaction_id,
+                    "old_parent": prev_min,
+                    "new_parent": minister["name"],
+                    "child": dept_name,
+                    "type": "AS_DEPARTMENT",
+                    "date": date_str
+                })
+            else:
+                # ADD
+                add_rows.append({
+                    "transaction_id": transaction_id,
+                    "parent": minister["name"],
+                    "parent_type": "minister",
+                    "child": dept_name,
+                    "child_type": "department",
+                    "rel_type": "AS_DEPARTMENT",
+                    "date": date_str
+                })
             counter += 1
 
-    # Write CSV
-    with open(csv_path, "w", newline='', encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "transaction_id", "parent", "parent_type", "child", "child_type", "rel_type", "date"
-        ])
-        writer.writeheader()
-        writer.writerows(rows)
+    # Write ADD CSV
+    if add_rows:
+        csv_path = output_dir / "add.csv"
+        with open(csv_path, "w", newline='', encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=[
+                "transaction_id", "parent", "parent_type", "child", "child_type", "rel_type", "date"
+            ])
+            writer.writeheader()
+            writer.writerows(add_rows)
+        print(f"✅ ADD CSV created at: {csv_path}")
 
-    print(f"✅ CSV created at: {csv_path}")
+    # Write MOVE CSV
+    if move_rows:
+        csv_path = output_dir / "move.csv"
+        with open(csv_path, "w", newline='', encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=[
+                "transaction_id", "old_parent", "new_parent", "child", "type", "date"
+            ])
+            writer.writeheader()
+            writer.writerows(move_rows)
+        print(f"✅ MOVE CSV created at: {csv_path}")
+
 
 def generate_amendment_csvs(gazette_number: str, date_str: str, transactions: dict):
     """
