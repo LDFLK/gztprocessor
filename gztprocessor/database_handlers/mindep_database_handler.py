@@ -46,7 +46,19 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: d
             transactions.get("adds", []) +
             transactions.get("terminates", [])
         )
-        
+
+    # Filter out any invalid transactions with empty departments or ministries
+    transactions = [
+        tx for tx in transactions
+        if tx.get("type") and tx.get("department") and (
+            tx["type"] != "ADD" or tx.get("to_ministry")
+        ) and (
+            tx["type"] != "MOVE" or (tx.get("to_ministry") and tx.get("from_ministry"))
+        ) and (
+            tx["type"] != "TERMINATE" or tx.get("from_ministry")
+        )
+    ]
+
     with get_connection() as conn:
         cur = conn.cursor()
 
@@ -58,26 +70,28 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: d
         else:
             # No data yet, return
             return
+
         # 2. Load the latest state into memory
         ministry_depts = defaultdict(list)
-        if row:
-            cur.execute(
-                """
-                SELECT m.name, d.name
-                FROM ministry m
-                JOIN department d ON m.id = d.ministry_id
-                WHERE m.gazette_number = ? AND m.date = ? AND d.gazette_number = ? AND d.date = ?
-                ORDER BY m.id, d.position
-                """,
-                (latest_gazette, latest_date, latest_gazette, latest_date)
-            )
-            for ministry_name, dept_name in cur.fetchall():
+        cur.execute(
+            """
+            SELECT m.name, d.name
+            FROM ministry m
+            JOIN department d ON m.id = d.ministry_id
+            WHERE m.gazette_number = ? AND m.date = ? AND d.gazette_number = ? AND d.date = ?
+            ORDER BY m.id, d.position
+            """,
+            (latest_gazette, latest_date, latest_gazette, latest_date)
+        )
+        for ministry_name, dept_name in cur.fetchall():
+            if ministry_name and dept_name:
                 ministry_depts[ministry_name].append(dept_name)
 
-        # 3. Apply transactions in memory (your existing logic)
+        # 3. Apply transactions in memory
         for tx in transactions:
             t = tx["type"]
             dept = tx["department"]
+
             if t == "MOVE":
                 from_min = tx["from_ministry"]
                 to_min = tx["to_ministry"]
@@ -87,24 +101,22 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: d
                     continue
                 ministry_depts[from_min].remove(dept)
                 if pos is not None:
-                    insert_at = pos - 1
-                    if insert_at < 0:
-                        insert_at = 0
+                    insert_at = max(pos - 1, 0)
                     ministry_depts[to_min].insert(insert_at, dept)
                 else:
                     ministry_depts[to_min].append(dept)
+
             elif t == "ADD":
                 to_min = tx["to_ministry"]
                 pos = tx.get("position")
                 if dept in ministry_depts[to_min]:
                     continue
                 if pos is not None:
-                    insert_at = pos - 1
-                    if insert_at < 0:
-                        insert_at = 0
+                    insert_at = max(pos - 1, 0)
                     ministry_depts[to_min].insert(insert_at, dept)
                 else:
                     ministry_depts[to_min].append(dept)
+
             elif t == "TERMINATE":
                 from_min = tx["from_ministry"]
                 if dept in ministry_depts[from_min]:
@@ -117,9 +129,11 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: d
             cur.execute("DELETE FROM department WHERE ministry_id IN ({})".format(",".join(["?"]*len(ministry_ids))), ministry_ids)
             cur.execute("DELETE FROM ministry WHERE gazette_number = ? AND date = ?", (gazette_number, date_str))
 
-        # 5. Insert the new state for the incoming gazette_number and date_str
+        # 5. Insert the new state
         ministry_id_map = {}
         for ministry_name, departments in ministry_depts.items():
+            if not ministry_name or not departments:
+                continue  # skip empty ministries
             cur.execute(
                 "INSERT INTO ministry (name, gazette_number, date) VALUES (?, ?, ?)",
                 (ministry_name, gazette_number, date_str)
@@ -137,3 +151,4 @@ def apply_transactions_to_db(gazette_number: str, date_str: str, transactions: d
 
     mindep_state_manager.export_state_snapshot(gazette_number, date_str)
     print(f"Exported state snapshot for {date_str}")
+

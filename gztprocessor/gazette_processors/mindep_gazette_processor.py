@@ -3,6 +3,7 @@ import re
 from collections import defaultdict
 from gztprocessor.db_connections.db_gov import get_connection
 from gztprocessor.state_managers.mindep_state_manager import MindepStateManager
+import gztprocessor.database_handlers.transaction_database_handler as trans_database
 
 mindep_state_manager = MindepStateManager()
 
@@ -64,9 +65,14 @@ def extract_initial_gazette_data(gazette_number: str, date_str: str, data: dict)
 # TODO: Resolve this issue for renames: https://github.com/zaeema-n/orgchart_nexoan/issues/11#issue-3238949430
 
 def extract_column_II_department_changes(data: dict) -> tuple[list[dict], list[dict]]:
-
-    adds = [e for e in data.get("ADD", []) if e.get("affected_column") == "II"]
-    omits = [e for e in data.get("OMIT", []) if e.get("affected_column") == "II"]
+    if "ADD" not in data or "OMIT" not in data:
+        raise ValueError(
+            f"Not an amendment gazette: missing ADD or OMIT"
+        )
+       
+    # Now extract entries where affected_column == "II"
+    adds = [e for e in data["ADD"] if e.get("affected_column") == "II"]
+    omits = [e for e in data["OMIT"] if e.get("affected_column") == "II"]
 
     added_map = defaultdict(list)
     for entry in adds:
@@ -255,9 +261,8 @@ def process_amendment_gazette(gazette_number: str, date_str: str, data) -> list[
     try:
         added, removed_raw = extract_column_II_department_changes(data)
     except ValueError as e:
-        print(f" Failed to extract column II changes for gazette {gazette_number} on {date_str}: {e}")
-        return []
-
+        return {"error": f"Amendment Gazette file for {gazette_number}, not found."}
+    trans_database.create_record(gazette_number,"mindep","amendment", date_str)
     resolved_removed = resolve_omitted_items(removed_raw, gazette_number, date_str)
     transactions = classify_department_changes(added, resolved_removed)
 

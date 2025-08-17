@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from gztprocessor.state_managers.state_manager import AbstractStateManager  # the shared base class
+from gztprocessor.database_handlers.transaction_database_handler import get_gazette_info
 
 def create_state_routes(prefix: str, state_manager: AbstractStateManager) -> APIRouter:
     router = APIRouter(prefix=f"/{prefix}/state")
@@ -17,6 +18,14 @@ def create_state_routes(prefix: str, state_manager: AbstractStateManager) -> API
             return {"error": "No state versions found."}
         except ValueError as e:
             return {"error": str(e)}
+    
+    @router.get("/gazettes/{from_date}/{to_date}")
+    def get_all_gazettes(from_date:str, to_date:str):
+        try:
+            return state_manager.get_all_gazette_numbers(from_date, to_date)
+        except ValueError:
+            return {"error": "No gazettes found"}
+    
 
     @router.get("/{date}")
     def get_state_by_date(date: str):

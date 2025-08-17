@@ -21,6 +21,9 @@ class AbstractStateManager(ABC):
     def get_latest_state_info(self) -> tuple[str, str]: ...
 
     @abstractmethod
+    def get_all_gazette_numbers(self) -> list[dict]: ...
+
+    @abstractmethod
     def clear_db(self): ...
 
     def get_state_file_path(self, gazette_number: str, date_str: str) -> Path:
@@ -55,3 +58,5 @@ class AbstractStateManager(ABC):
         for f in self.state_dir.glob("state_*.json"):
             f.unlink()
         self.clear_db()
+
+    

@@ -18,7 +18,8 @@ Supports:
 
 ---
 
-## Installation
+
+## Package Installation
 
 ```bash
 pip install git+https://github.com/sehansi-9/gztprocessor.git
@@ -49,8 +50,45 @@ If you want to use the interactive API:
    See the **API Endpoints** section below.
 
 ---
+or 
 
-## Project Structure
+## Running the full project with frontend
+
+Fork the repository on GitHub to your own account.
+
+Clone your fork locally and navigate into the project folder:
+
+```bash
+git clone https://github.com/<your-username>/gztprocessor.git
+cd gztprocessor
+```
+2. Install Python Dependencies
+
+Install the required Python packages for both core functionality and API support:
+```bash
+python -m pip install --upgrade pip
+python -m pip install nltk rapidfuzz fastapi uvicorn
+```
+3. Run the FastAPI Backend
+
+Start the backend server:
+```bash
+uvicorn main:app --reload
+```
+The API will be available at http://127.0.0.1:8000
+
+4. Setup and Run the Frontend
+
+Open a new terminal, navigate to the frontend folder, install dependencies, and start the development server:
+```bash
+cd gztp-frontend
+npm install
+npm run dev
+```
+You can now access the frontend application in your browser (usually at http://localhost:5173).
+
+
+## Structure
 
 ```
 gztprocessor/
@@ -63,7 +101,7 @@ gztprocessor/
   └── __init__.py
 main.py
 MANIFEST.in
-setup.py
+pyproject.toml
 readme.md
 ```
 
@@ -110,9 +148,24 @@ readme.md
 ```json
 {
   "ministers": [
-    { "name": "Minister of X", "departments": ["Dept A", "Dept B"] }
+    {
+      "name": "Minister of X",
+      "departments": [
+        { "name": "Dept A" },
+        { "name": "Dept B", "previous_ministry": "Minister of Y" },
+        { "name": "Dept C" , "previous_ministry": "Minister of G"}
+      ]
+    },
+    {
+      "name": "Minister of Z",
+      "departments": [
+        { "name": "Dept D", "previous_ministry": "Minister of X" },
+        { "name": "Dept E" }
+      ]
+    }
   ]
 }
+
 ```
 
 ### MinDep Amendment Gazette (POST)
